@@ -1,0 +1,394 @@
+/* ==========================
+   기본 스타일 (PC 기준)
+========================== */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 60px;
+  height: auto; /* ✅ 높이를 auto로 */
+  min-height: 80px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+
+  /* ✅ 핵심 */
+  flex-wrap: wrap; /* 창 줄일 때 줄바꿈 허용 */
+  row-gap: 15px; /* 줄 간격 */
+}
+
+/* 왼쪽: 로고 + 메뉴 */
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  /* flex-wrap: wrap;  ❌ 이 줄 삭제 또는 주석처리 */
+  gap: 40px;
+  min-width: 250px;
+}
+
+.nav-links li:first-child {
+  font-weight: 700;
+  color: #7b61ff;
+  font-size: 22px;
+  cursor: default;
+}
+/* --- nav-links 공통 --- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center; /* ✅ 세로 중앙 정렬 유지 */
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: nowrap; /* ✅ 줄바꿈 금지 */
+}
+
+/* 각 li를 같은 높이로 맞춰서 세로 흔들림 방지 */
+.nav-links li {
+  display: flex;
+  align-items: center;
+  height: 2px; /* navbar와 동일 높이 */
+  line-height: 1; /* 폰트 높이로 인해 내려앉는 현상 방지 */
+}
+
+.nav-links li:hover {
+  color: #7b61ff;
+}
+/* 오른쪽: 검색창 + 로그아웃 버튼 */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1; /* ✅ 남은 공간 차지 */
+  justify-content: flex-end;
+  flex-wrap: wrap; /* ✅ 좁으면 줄바꿈 */
+  min-width: 240px;
+}
+
+.search-bar {
+  width: 240px;
+  height: 36px;
+  padding: 0 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: width 0.3s ease;
+}
+.search-bar:focus {
+  border-color: #a252e1;
+  width: 260px;
+}
+
+.logout-btn {
+  background-color: #a252e1;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.logout-btn:hover {
+  background-color: #8a3fd9;
+}
+
+/* ====== HERO 섹션 ====== */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 120px;
+  background: linear-gradient(to right, #fff0ff, #f5f1ff);
+  min-height: 400px;
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+  margin-right: 20px;
+}
+
+.ai-badge {
+  background: #f5e3ff;
+  color: #8d3cff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.highlight {
+  color: #a252e1;
+}
+
+.subtext {
+  margin: 20px 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.primary-btn {
+  background-color: #a252e1;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.secondary-btn {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  margin-right: 80px;
+  transition: all 0.3s ease;
+}
+
+.accuracy {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+/* ====== CATEGORY ====== */
+.categories {
+  text-align: center;
+  padding: 100px 80px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.category-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  color: white;
+  text-align: left;
+}
+
+/* ====== TRENDING ====== */
+.trending {
+  padding: 100px 80px;
+  background-color: #fafafa;
+}
+
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.trend-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+.trend-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+.trend-card:hover {
+  transform: translateY(-6px);
+}
+
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #a252e1;
+  color: white;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+/* .info {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.info {
+  display: flex;
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+/* ====== FOOTER ====== */
+footer {
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  color: #777;
+  border-top: 1px solid #eee;
+}
+
+/* ==========================
+   📱 반응형 스타일
+========================== */
+
+/* --- 태블릿 (1100px 이하) --- */
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0 40px;
+  }
+  .nav-left {
+    gap: 60px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 40px;
+  }
+  .hero-text {
+    margin-left: 0;
+    max-width: 90%;
+    margin-bottom: 50px;
+  }
+  .hero-image img {
+    width: 80%;
+    margin-right: 0;
+  }
+
+  .category-grid,
+  .trend-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- 모바일 (768px 이하) --- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+  }
+
+  .nav-left {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .nav-right {
+    margin-top: 10px;
+  }
+
+  .search-bar {
+    width: 180px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 60px 20px;
+  }
+  .hero-text {
+    max-width: 100%;
+    margin: 0;
+  }
+  .hero-image img {
+    width: 90%;
+    max-width: 380px;
+    margin-right: 0;
+  }
+
+  .category-grid,
+  .trend-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .categories,
+  .trending {
+    padding: 60px 20px;
+  }
+}
