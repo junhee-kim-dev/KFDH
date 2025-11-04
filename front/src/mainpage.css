@@ -176,7 +176,7 @@ html {
   font-size: 15px;
 }
 
-.hero-image {
+/* .hero-image {
   flex: 1;
   min-width: 300px;
   display: flex;
@@ -191,6 +191,49 @@ html {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   margin-right: 80px;
   transition: all 0.3s ease;
+} */
+
+/* 🔹 Hero 자동 슬라이드 전환 */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* ✅ 고정 높이 추가 */
+  overflow: hidden; /* ✅ 이미지가 넘쳐도 깔끔하게 */
+  position: relative; /* 애니메이션 정렬용 */
+}
+.user-name {
+  font-weight: 500;
+  color: #6a4bcf;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.hero-image img {
+  width: auto;
+  height: 100%; /* ✅ 높이에 맞춰 비율 유지 */
+  max-width: none;
+  object-fit: contain;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  position: absolute; /* ✅ 고정된 위치에서 부드럽게 교체 */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.8s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+    transform: translateX(-50%) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
 }
 
 .accuracy {
@@ -391,4 +434,24 @@ footer {
   .trending {
     padding: 60px 20px;
   }
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn.liked {
+  color: #ff4d6d;
+}
+
+.like-btn:not(.liked) {
+  color: #888;
 }

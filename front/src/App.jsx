@@ -4,6 +4,8 @@ import LoginPage from "./login";
 import RegisterPage from "./regist";
 import ProtectedRoute from "./ProtectedRoute";
 import MainPage from "./mainpage";
+import RecommendPage from "./recommend_page";
+import FittingPage from "./fitting_page";
 
 const Home = ({ user, handleLogout }) => (
   <div style={{ textAlign: "center", marginTop: "100px" }}>
@@ -64,6 +66,9 @@ function App() {
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/regist" element={<RegisterPage />} />
         <Route path="/mainpage" element={<MainPage user={user} />} />
+        <Route path="/recommend" element={<RecommendPage />} />
+        <Route path="/fitting" element={<FittingPage />} />
+
         <Route
           path="/"
           element={

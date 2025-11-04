@@ -2,29 +2,51 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 
-const LockIcon = () => (
+const KFashionLogo = () => (
   <svg
     width="150"
     height="150"
-    viewBox="0 0 24 24"
-    fill="none"
+    viewBox="0 0 200 200"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ color: "#866ff2" }}
   >
+    <rect width="200" height="200" rx="20" fill="transparent" />
+    <defs>
+      <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#a67cff" />
+        <stop offset="100%" stopColor="#c77bff" />
+      </linearGradient>
+    </defs>
+
+    {/* K 스티치 라인 */}
     <path
-      d="M17 11H7C5.89543 11 5 11.8954 5 13V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V13C19 11.8954 18.1046 11 17 11Z"
-      stroke="currentColor"
-      strokeWidth="2"
+      d="
+        M55 30 
+        L55 170 
+        M55 100 
+        L145 30 
+        M55 100 
+        L145 170
+      "
+      stroke="url(#grad)"
+      strokeWidth="10"
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeDasharray="18 12"
+      fill="none"
     />
-    <path
-      d="M8 11V7C8 5.67392 8.52678 4.40215 9.46447 3.46447C10.4021 2.52678 11.6739 2 13 2C14.3261 2 15.5979 2.52678 16.5355 3.46447C17.4732 4.40215 18 5.67392 18 7V11"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+
+    {/* 텍스트 */}
+    <text
+      x="50%"
+      y="190"
+      textAnchor="middle"
+      fill="#444"
+      fontFamily="Inter, Pretendard, sans-serif"
+      fontSize="26"
+      fontWeight="600"
+    >
+      K-Fashion
+    </text>
   </svg>
 );
 
@@ -162,7 +184,7 @@ const RegisterPage = () => {
     <div className="container">
       <div className="leftPanel">
         <div>
-          <LockIcon />
+          <KFashionLogo />
         </div>
       </div>
 

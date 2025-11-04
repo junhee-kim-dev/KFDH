@@ -1,0 +1,309 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* ✅ 좌우 스크롤 완전 차단 */
+  width: 100%;
+}
+
+.recommendWrapper {
+  background: linear-gradient(to bottom right, #ffeefe, #ffffff);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  font-family: "Pretendard", sans-serif;
+  overflow-x: hidden; /* ✅ 내부요소가 밀려도 스크롤 안생김 */
+  max-width: 100vw; /* ✅ 뷰포트 초과 방지 */
+}
+
+/* ====== HEADER ====== */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(90deg, #f7e9ff, #ffffff);
+  padding: 80px 0 60px;
+  border-bottom: 1px solid #f0dfff;
+}
+
+.headerSub {
+  color: #a252e1;
+  font-weight: 600;
+  font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.headerTitle {
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.headerDesc {
+  margin-top: 8px;
+  color: #666;
+  font-size: 15px;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 40px; /* ✅ 기존 60px → 40px으로 줄여서 여백 균형 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box; /* ✅ 패딩 포함 계산 */
+}
+
+.navLeft .navLinks {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navLinks li {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.navLinks li:first-child {
+  font-weight: 700;
+  font-size: 20px;
+  color: #7b47e6;
+}
+
+.navLinks li:hover {
+  color: #a252e1;
+}
+
+.active {
+  color: #a252e1 !important;
+  font-weight: 600;
+  border-bottom: 2px solid #a252e1;
+  padding-bottom: 2px;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.logoutBtn {
+  background: linear-gradient(to right, #a252e1, #d66ee8);
+  color: white;
+  border: none;
+  border-radius: 22px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logoutBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(160, 70, 220, 0.3);
+}
+
+/* ====== INPUT SECTION ====== */
+.recommendContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.inputSection {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.inputCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  width: 420px;
+}
+
+.uploadBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  border: 2px dashed #ddd;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.uploadBox:hover {
+  border-color: #b96bf6;
+  background: #fdf6ff;
+}
+
+.uploadPlaceholder {
+  text-align: center;
+  color: #777;
+}
+
+.uploadIcon {
+  font-size: 36px;
+}
+
+.uploadPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  resize: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.textarea:focus {
+  border-color: #b96bf6;
+  outline: none;
+  background: #fdf6ff;
+}
+
+.keywordRow {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.keywordRow button {
+  background: #f5f1ff;
+  color: #7a4de8;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.keywordRow button:hover {
+  background: #e3d8ff;
+}
+
+.recommendBtn {
+  background: linear-gradient(to right, #a252e1, #e25fd6);
+  color: white;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recommendBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(174, 84, 238, 0.3);
+}
+
+/* ====== TREND GRID ====== */
+.trendGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  max-width: 1000px;
+}
+
+.trendCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.trendCard:hover {
+  transform: translateY(-4px);
+}
+
+.trendCard img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 14px;
+}
+
+.score {
+  color: #a252e1;
+  font-weight: 600;
+}
+
+/* ====== FEATURE SECTION ====== */
+.featureSection {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.featureCard {
+  background: white;
+  width: 260px;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.icon {
+  font-size: 36px;
+}
+
+.featureCard h4 {
+  margin-top: 10px;
+  color: #333;
+}
+
+.featureCard p {
+  color: #666;
+  font-size: 14px;
+  margin-top: 6px;
+}

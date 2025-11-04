@@ -168,27 +168,60 @@
 // };
 
 // export default MainPage;
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mainpage.css";
 
 const MainPage = ({ user }) => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]); // DB에서 가져온 상품 저장
+  const [products, setProducts] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0); // 🔹 슬라이드 인덱스
 
-  // 1️⃣ DB에서 상품 데이터 불러오기
+  // ✅ Hero 이미지 배열 (원하는 만큼 추가)
+  const heroImages = [
+    "images/c1.png",
+    "images/c2.png",
+    "images/c3.png",
+    "images/c4.png",
+  ];
+
+  // ✅ 3초마다 이미지 변경
   useEffect(() => {
-    fetch("http://localhost:8000/api/products")
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
+  // ✅ 페이지 타이틀
+  useEffect(() => {
+    document.title = "K-Fashion";
+  }, []);
+
+  // ✅ 로그인된 사용자 정보 가져오기
+  useEffect(() => {
+    fetch("http://localhost:8000/api/auth/me", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
-        console.log("📦 불러온 상품 데이터:", data.products);
-        setProducts(data.products);
+        if (data.user) setUser(data.user);
       })
+      .catch(() => console.log("사용자 정보를 불러오지 못했습니다."));
+  }, []);
+
+  // ✅ 상품 데이터 불러오기
+  useEffect(() => {
+    fetch("http://localhost:8000/api/products", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("인증 실패");
+        return res.json();
+      })
+      .then((data) => setProducts(data.products))
       .catch((err) => console.error("데이터 불러오기 실패:", err));
   }, []);
 
-  // 2️⃣ 로그아웃 핸들러
+  // ✅ 로그아웃
   const handleLogout = async () => {
     try {
       await fetch("http://localhost:8000/api/auth/logout", {
@@ -202,6 +235,26 @@ const MainPage = ({ user }) => {
     }
   };
 
+  // ✅ 좋아요
+  const handleLike = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:8000/api/like/${id}`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const data = await res.json();
+      setProducts((prev) =>
+        prev.map((p) =>
+          p.id === id
+            ? { ...p, likes: data.new_like_count, liked: data.liked }
+            : p
+        )
+      );
+    } catch (err) {
+      console.error("좋아요 실패:", err);
+    }
+  };
+
   return (
     <div className="mainpage">
       {/* 상단 네비게이션 */}
@@ -209,15 +262,16 @@ const MainPage = ({ user }) => {
         <div className="nav-left">
           <ul className="nav-links">
             <li>K-Fashion</li>
-            <li>홈</li>
-            <li>가상 피팅</li>
+            <li onClick={() => navigate("/mainpage")}>홈</li>
+            <li onClick={() => navigate("/fitting")}>가상피팅</li>
             <li>트렌드</li>
-            <li>추천</li>
+            <li onClick={() => navigate("/recommend")}>추천</li>
             <li>소셜</li>
           </ul>
         </div>
 
         <div className="nav-right">
+          {user && <span className="user-name">{user.name}님</span>}
           <input
             type="text"
             placeholder="스타일, 의상, 브랜드 검색..."
@@ -229,7 +283,7 @@ const MainPage = ({ user }) => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* ✅ Hero Section (자동 슬라이드 이미지 적용됨) */}
       <section className="hero">
         <div className="hero-text">
           <p className="ai-badge">✨ AI 기반 스타일 추천</p>
@@ -246,12 +300,16 @@ const MainPage = ({ user }) => {
             <button className="secondary-btn">인기 스타일 보기</button>
           </div>
         </div>
-        <div className="hero-image">
-          <img src="images/c1.png" alt="AI 스타일 추천" />
+
+        <div className="hero-image fade">
+          <img
+            src={heroImages[currentIndex]}
+            alt={`AI 추천 ${currentIndex + 1}`}
+          />
         </div>
       </section>
 
-      {/* 트렌딩 섹션 (DB 연결됨) */}
+      {/* 트렌딩 섹션 */}
       <section className="trending">
         <h2>트렌딩 의상</h2>
         <p>지금 가장 인기 있는 스타일을 만나보세요</p>
@@ -272,9 +330,13 @@ const MainPage = ({ user }) => {
                 <div className="tag">{item.brand}</div>
                 <div className="info">
                   <h4>{item.name}</h4>
-
                   <p className="price">{item.price.toLocaleString()}원</p>
-                  <p>❤️ {item.likes.toLocaleString()}</p>
+                  <button
+                    className={`like-btn ${item.liked ? "liked" : ""}`}
+                    onClick={() => handleLike(item.id)}
+                  >
+                    {item.liked ? "❤️" : "🤍"} {item.likes}
+                  </button>
                 </div>
               </div>
             ))
